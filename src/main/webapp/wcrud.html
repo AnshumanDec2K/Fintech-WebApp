@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <a href="index.html">Back To Home</a>
+
+    <legend>
+        <h3>
+            VIEW JSON
+        </h3>
+
+        <form action="getAllWinterInternship" method="get">
+            <h2>Limit</h2><input type="text" placeholder="Limit" name="limit">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+
+    <legend>
+        <h3>Search</h3>
+        <form action="getDataByCustID" method="get">
+            Customer Number:<input type="text" placeholder="Customer Number" name="cn">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+
+    <legend>
+        <h3>Advanced Search</h3>
+        <form action="searchData" method="get">
+            Document ID:<input type="text" placeholder="Document ID" name="doc">
+            Customer Number:<input type="text" placeholder="Customer Number" name="cn">
+            Invoice ID:<input type="text" placeholder="Invoice ID" name="inv">
+            Business Year:<input type="text" placeholder="Business Year" name="byear">
+
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <br>
+
+    <legend>
+        <h3>Insertion</h3>
+        <form action="insertIntoWinter" method="post">
+            Business Code:<input type="text" placeholder="Business Code" name="bcode">
+            <br>
+            Customer Number:<input type="text" placeholder="Customer Number" name="cn">
+            <br>
+            Clear Date:<input type="text" placeholder="Clear Date" name="cdate">
+            <br>
+            Business Year:<input type="text" placeholder="Business Year" name="byear">
+            <br>
+            Document ID:<input type="text" placeholder="Document ID" name="doc">
+            <br>
+            Posting Date:<input type="text" placeholder="Posting date" name="pdate">
+            <br>
+            Document Create Date:<input type="text" placeholder="Document Create Date" name="dcd">
+            <br>
+            Due Date:<input type="text" placeholder="Due Date" name="ddate">
+            <br>
+            Invoice Currency:<input type="text" placeholder="Invoice Currency" name="ic">
+            <br>
+            Document Type:<input type="text" placeholder="Document Type" name="dtype">
+            <br>
+            Posting ID:<input type="text" placeholder="Posting ID" name="pid">
+            <br>
+            Total Open Amount:<input type="text" placeholder="Total Open Amount" name="toa">
+            <br>
+            Baseline Create Date:<input type="text" placeholder="Baseline Create Date" name="bcd">
+            <br>
+            Customer Payment Terms:<input type="text" placeholder="Customer Payment Terms" name="cpt">
+            <br>
+            Invoice ID:<input type="text" placeholder="Invoice ID" name="invid">
+
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <br>
+
+    <legend>
+        <h3>Updation</h3>
+        <form action="updateInWinter" method="post">
+            <input type="hidden" name="_method" value="put" />
+            Invoice Currency:<input type="text" placeholder="New Invoice Currency" name="ic">
+            Customer Payment Terms:<input type="text" placeholder="New Customer Payment Terms" name="cpt">
+            Serial Number:<input type="text" placeholder="Serial Number" name="sn">
+            <!-- <input type="submit" value="#"> -->
+        </form>
+    </legend>
+    <br>
+
+    <legend>
+        <h3>Deletion</h3>
+        <form action="deleteFromWinter" method="get">
+            Serial Number:<input type="text" placeholder="Serial Number" name="sn">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+
+
+
+</body>
+
+</html>
