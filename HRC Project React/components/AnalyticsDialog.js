@@ -25,14 +25,14 @@ const AnalyticsDialog = ({ open, setOpen }) => {
 
 
     const handleClickOpen = async () => {
-        
-        
+
+
         const res = await Analytics(clearFrom, clearTo, dueFrom, dueTo, baselineFrom, baselineTo, invoiceCurrency);
-        
+
         setTotalOpenAmt(res.data.totalOpenInsights);
         setCurrency(res.data.currencyCountInsights);
 
-        
+
         setAnalyticsOpen(true);
         setOpen(false);
 
@@ -41,6 +41,17 @@ const AnalyticsDialog = ({ open, setOpen }) => {
 
     const handleClose = () => {
         setOpen(false);
+
+        setClearFrom();
+        setClearTo();
+        setDueFrom();
+        setDueTo();
+        setBaselineFrom();
+        setBaselineTo();
+        setInvoiceCurrency();
+        setAnalyticsOpen();
+        setTotalOpenAmt();
+        setCurrency();
     };
 
 
@@ -217,7 +228,7 @@ const AnalyticsDialog = ({ open, setOpen }) => {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <FullScreenDialog open={analyticsOpen} setOpen={setAnalyticsOpen} currency={currency} totalOpenAmt={totalOpenAmt}/>
+            <FullScreenDialog open={analyticsOpen} setOpen={setAnalyticsOpen} currency={currency} totalOpenAmt={totalOpenAmt} />
         </>
     )
 }

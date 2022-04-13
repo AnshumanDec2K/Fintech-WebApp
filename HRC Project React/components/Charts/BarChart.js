@@ -8,7 +8,7 @@ function BarChart({totalOpenAmt}) {
     const data = {
         labels: businesses,
         datasets: [{
-            label: 'My First Dataset',
+            label: 'No of Customers',
             data: customerCounts,
             backgroundColor: [
                 '#FFB0C1',
@@ -17,7 +17,7 @@ function BarChart({totalOpenAmt}) {
             hoverOffset: 4
         },
         {
-            label: 'My First Dataset',
+            label: 'Total Open Amount',
             data: totalOpenAmounts,
             backgroundColor: [
                 '#99D0F5'
