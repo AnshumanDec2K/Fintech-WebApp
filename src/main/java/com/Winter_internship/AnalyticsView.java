@@ -31,47 +31,44 @@ public class AnalyticsView extends HttpServlet {
             List<Map<String, Object>> totalOpenInsights = new ArrayList<Map<String, Object>>();
             List<Map<String, Object>> currencyCountInsights = new ArrayList<Map<String, Object>>();
 
-            String clearFromString = request.getParameter("clearFrom");
-            String clearToString = request.getParameter("clearFrom");
-            String dueFromString = request.getParameter("dueFrom");
-            String dueToString = request.getParameter("dueTo");
-            String baselineFromString = request.getParameter("baselineFrom");
-            String baselineToString = request.getParameter("baselineTo");
-            String invoiceCurrencyString = request.getParameter("invoiceCurrency");
+            String clearFrom = request.getParameter("clearFrom");
+            String clearTo = request.getParameter("clearFrom");
+            String dueFrom = request.getParameter("dueFrom");
+            String dueTo = request.getParameter("dueTo");
+            String baselineFrom = request.getParameter("baselineFrom");
+            String baselineTo = request.getParameter("baselineTo");
+            String invoiceCurrency = request.getParameter("invoiceCurrency");
 
-            
-            String invoiceCurrency = null;
-
-            if (clearFromString != "" && clearFromString != null) {
-                clearFrom = new Date(Long.parseLong(clearFromString));
+            if (clearFrom == "") {
+                clearFrom = null;
             }
-            if (clearToString != "" && clearToString != null) {
-                clearTo = new Date(Long.parseLong(clearToString));
+            if (clearTo == "") {
+                clearTo = null;
             }
-            if (dueFromString != "" && dueFromString != null) {
-                dueFrom = new Date(Long.parseLong(dueFromString));
+            if (dueFrom == "") {
+                dueFrom = null;
             }
-            if (dueToString != "" && dueToString != null) {
-                dueTo = new Date(Long.parseLong(dueToString));
+            if (dueTo == "") {
+                dueTo = null;
             }
-            if (baselineFromString != "" && baselineFromString != null) {
-                baselineFrom = new Date(Long.parseLong(baselineFromString));
+            if (baselineFrom == "") {
+                baselineFrom = null;
             }
-            if (baselineToString != "" && baselineToString != null) {
-                baselineTo = new Date(Long.parseLong(baselineToString));
+            if (baselineTo == "") {
+                baselineTo = null;
             }
-            if (invoiceCurrencyString != "" && invoiceCurrencyString != null) {
-                invoiceCurrency = invoiceCurrencyString;
+            if (invoiceCurrency == "") {
+                invoiceCurrency = null;
             }
 
-            Winter_internshipDAO windao = new Winter_internshipDAO();
+            Winter_internshipDAO winDAO = new Winter_internshipDAO();
 
-            totalOpenInsights = windao.getCustomersAndAmountForBusinesses(clearFrom, clearTo, dueFrom, dueTo,
+            totalOpenInsights = winDAO.getBusinessAnalysis(clearFrom, clearTo, dueFrom, dueTo,
                     baselineFrom, baselineTo, invoiceCurrency);
             allInsights.put("totalOpenInsights", totalOpenInsights);
 
             if (invoiceCurrency == null) {
-                currencyCountInsights = windao.getCurrencyCounts(clearFrom, clearTo, dueFrom, dueTo, baselineFrom,
+                currencyCountInsights = winDAO.getCurrencyAnalysis(clearFrom, clearTo, dueFrom, dueTo, baselineFrom,
                         baselineTo);
                 allInsights.put("currencyCountInsights", currencyCountInsights);
             }

@@ -5,10 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -252,77 +249,34 @@ public class Winter_internshipDAO {
         return status;
     }
 
-    public List<Map<String, Object>> getCustomersAndAmountForBusinesses(Date cds, Date cde, Date dds, Date dde,
-            Date bds, Date bde, String ic) throws SQLException {
+    public List<Map<String, Object>> getBusinessAnalysis(String clearDateFrom, String clearDateTo, String dueDateFrom,
+            String dueDateTo, String baselineDateFrom, String baselineDateTo, String invoiceCurrency) throws Exception {
         try {
             List<Map<String, Object>> insights = new ArrayList<Map<String, Object>>();
 
-            String sql_query = "SELECT business_name,  SUM(total_open_amount) AS amount, COUNT(DISTINCT cust_number) AS customers FROM  winter_internship\r\n"
-                    +
-                    "    LEFT JOIN business ON winter_internship.business_code = business.business_code\r\n" +
-                    "WHERE\r\n" +
-                    "    winter_internship.sl_no IS NOT NULL\r\n";
+            String sql_query = "SELECT business_name, SUM(total_open_amount) AS total_amount_amount, COUNT(DISTINCT cust_number) AS customer_count FROM  winter_internship LEFT JOIN business ON winter_internship.business_code = business.business_code WHERE winter_internship.sl_no IS NOT NULL";
 
-            DateFormat sfm = new SimpleDateFormat("yyyy-MM-dd");
-
-            if (cds != null && cde != null) {
-                String start = sfm.format(cds);
-                String end = sfm.format(cde);
-
-                sql_query += " AND winter_internship.clear_date BETWEEN \r\n" +
-                        " '" + start + "'\r\n" +
-                        " AND '" + end + "'\r\n";
-            } else if (cds != null) {
-                String start = sfm.format(cds);
-
-                sql_query += " AND winter_internship.clear_date >= '" + start + "'\r\n";
-            } else if (cde != null) {
-                String end = sfm.format(cde);
-
-                sql_query += " AND winter_internship.clear_date <= '" + end + "'\r\n";
+            if (clearDateFrom != null && clearDateTo != null) {
+                sql_query += " AND winter_internship.clear_date BETWEEN '" + clearDateFrom + "' AND '" + clearDateTo
+                        + "'";
             }
 
-            if (dds != null && dde != null) {
-                String start = sfm.format(dds);
-                String end = sfm.format(dde);
-
-                sql_query += " AND winter_internship.due_in_date BETWEEN \r\n" +
-                        " '" + start + "'\r\n" +
-                        " AND '" + end + "'\r\n";
-            } else if (dds != null) {
-                String start = sfm.format(dds);
-
-                sql_query += " AND winter_internship.due_in_date >= '" + start + "'\r\n";
-            } else if (dde != null) {
-                String end = sfm.format(dde);
-
-                sql_query += " AND winter_internship.due_in_date <= '" + end + "'\r\n";
+            if (dueDateFrom != null && dueDateTo != null) {
+                sql_query += " AND winter_internship.due_in_date BETWEEN  '" + dueDateFrom + "' AND '" + dueDateTo
+                        + "'";
             }
 
-            if (bds != null && bde != null) {
-                String start = sfm.format(bds);
-                String end = sfm.format(bde);
-
-                sql_query += " AND winter_internship.baseline_create_date BETWEEN \r\n" +
-                        " '" + start + "'\r\n" +
-                        " AND '" + end + "'\r\n";
-            } else if (bds != null) {
-                String start = sfm.format(bds);
-
-                sql_query += " AND winter_internship.baseline_create_date >= '" + start + "'\r\n";
-            } else if (bde != null) {
-                String end = sfm.format(bde);
-
-                sql_query += " AND winter_internship.baseline_create_date <= '" + end + "'\r\n";
+            if (baselineDateFrom != null && baselineDateTo != null) {
+                sql_query += " AND winter_internship.baseline_create_date BETWEEN  '" + baselineDateFrom + "' AND '"
+                        + baselineDateTo
+                        + "'";
             }
 
-            if (ic != null && ic != "") {
-                sql_query += " AND winter_internship.invoice_currency = '" + ic + "'";
+            if (invoiceCurrency != null && invoiceCurrency != "") {
+                sql_query += " AND winter_internship.invoice_currency = '" + invoiceCurrency + "'";
             }
 
-            sql_query += " AND is_deleted = 0";
-
-            sql_query += " GROUP BY business_name";
+            sql_query += " AND is_deleted = 0 GROUP BY business_name";
 
             Connection conn = getConnection();
             PreparedStatement pst = conn.prepareStatement(sql_query);
@@ -332,85 +286,45 @@ public class Winter_internshipDAO {
             while (resultSet.next()) {
                 Map<String, Object> businessInsight = new HashMap<String, Object>();
 
-                businessInsight.put("businessName", resultSet.getString("business_name"));
-                businessInsight.put("totalAmount", resultSet.getDouble("amount"));
-                businessInsight.put("customerCount", resultSet.getInt("customers"));
+                businessInsight.put("business_name", resultSet.getString("business_name"));
+                businessInsight.put("total_open_amount", resultSet.getDouble("total_amount_amount"));
+                businessInsight.put("customer_count", resultSet.getInt("customer_count"));
 
                 insights.add(businessInsight);
             }
 
             return insights;
-        } catch (SQLException e) {
-            throw e;
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public List<Map<String, Object>> getCurrencyCounts(Date cds, Date cde, Date dds, Date dde,
-            Date bds, Date bde) throws SQLException {
-
+    public List<Map<String, Object>> getCurrencyAnalysis(String clearDateFrom, String clearDateTo, String dueDateFrom,
+            String dueDateTo, String baselineDateFrom, String baselineDateTo) throws SQLException {
         try {
             List<Map<String, Object>> insights = new ArrayList<Map<String, Object>>();
 
             String sql_query = "SELECT invoice_currency, COUNT(DISTINCT doc_id) AS count FROM winter_internship WHERE sl_no IS NOT NULL\r\n";
 
-            DateFormat sfm = new SimpleDateFormat("yyyy-MM-dd");
-
-            if (cds != null && cde != null) {
-                String start = sfm.format(cds);
-                String end = sfm.format(cde);
-
+            if (clearDateFrom != null && clearDateTo != null) {
                 sql_query += " AND clear_date BETWEEN \r\n" +
-                        " '" + start + "'\r\n" +
-                        " AND '" + end + "'\r\n";
-            } else if (cds != null) {
-                String start = sfm.format(cds);
-
-                sql_query += " AND clear_date >= '" + start + "'\r\n";
-            } else if (cde != null) {
-                String end = sfm.format(cde);
-
-                sql_query += " AND clear_date <= '" + end + "'\r\n";
+                        " '" + clearDateFrom + "'\r\n" +
+                        " AND '" + clearDateTo + "'\r\n";
             }
 
-            if (dds != null && dde != null) {
-                String start = sfm.format(dds);
-                String end = sfm.format(dde);
-
+            if (dueDateFrom != null && dueDateTo != null) {
                 sql_query += " AND due_in_date BETWEEN \r\n" +
-                        " '" + start + "'\r\n" +
-                        " AND '" + end + "'\r\n";
-            } else if (dds != null) {
-                String start = sfm.format(dds);
-
-                sql_query += " AND due_in_date >= '" + start + "'\r\n";
-            } else if (dde != null) {
-                String end = sfm.format(dde);
-
-                sql_query += " AND due_in_date <= '" + end + "'\r\n";
+                        " '" + dueDateFrom + "'\r\n" +
+                        " AND '" + dueDateTo + "'\r\n";
             }
 
-            if (bds != null && bde != null) {
-                String start = sfm.format(bds);
-                String end = sfm.format(bde);
-
+            if (baselineDateFrom != null && baselineDateTo != null) {
                 sql_query += " AND baseline_create_date BETWEEN \r\n" +
-                        " '" + start + "'\r\n" +
-                        " AND '" + end + "'\r\n";
-            } else if (bds != null) {
-                String start = sfm.format(bds);
-
-                sql_query += " AND baseline_create_date >= '" + start + "'\r\n";
-            } else if (bde != null) {
-                String end = sfm.format(bde);
-
-                sql_query += " AND baseline_create_date <= '" + end + "'\r\n";
+                        " '" + baselineDateFrom + "'\r\n" +
+                        " AND '" + baselineDateTo + "'\r\n";
             }
 
-            sql_query += " AND is_deleted = 0";
-
-            sql_query += " GROUP BY invoice_currency";
+            sql_query += " AND is_deleted = 0 GROUP BY invoice_currency";
 
             Connection conn = getConnection();
             PreparedStatement pst = conn.prepareStatement(sql_query);
@@ -427,8 +341,6 @@ public class Winter_internshipDAO {
             }
 
             return insights;
-        } catch (SQLException e) {
-            throw e;
         } catch (Exception e) {
             throw e;
         }
