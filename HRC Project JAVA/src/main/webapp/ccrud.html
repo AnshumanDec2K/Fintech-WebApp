@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <a href="index.html">Back To Home</a>
+
+    <legend>
+        <h3>View JSON</h3>
+        <a href="http://localhost:8080/demo/api/customer">View JSON</a>
+    </legend>
+
+    <legend>
+        <h3>Search</h3>
+        <form action="getCustomerByCode" method="get">
+            Customer Number:<input type="text" placeholder="Customer Number" name="cn">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <br>
+
+    <legend>
+        <h3>Insertion</h3>
+        <form action="insertIntoCustomer" method="post">
+            Customer Number:<input type="text" placeholder="Customer Number" name="inum">
+            Customer Name:<input type="text" placeholder="Customer Name" name="iname">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <br>
+
+    <legend>
+        <h3>Updation</h3>
+        <form action="updateInCustomer" method="post">
+            Customer Number:<input type="text" placeholder="Customer Number" name="unum">
+            New Customer Name:<input type="text" placeholder="New Customer Name" name="uname">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <br>
+
+    <legend>
+        <h3>Deletion</h3>
+        <form action="deleteFromCustomer" method="get">
+            Customer Number:<input type="text" placeholder="Customer Number" name="dnum">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+
+
+
+</body>
+
+</html>

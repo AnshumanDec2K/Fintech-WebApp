@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <a href="index.html">Back To Home</a>
+
+    <legend>
+        <h3>View JSON</h3>
+        <a href="http://localhost:8080/demo/api/business">View JSON</a>
+    </legend>
+
+    <legend>
+        <h3>Search</h3>
+        <form action="getBussinessByCode" method="get">
+            BusinessID:<input type="text" placeholder="BusinessID" name="bid">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <br>
+
+    <legend>
+        <h3>Insertion</h3>
+        <form action="insertIntoBussiness" method="post">
+            Business Code:<input type="text" placeholder="Business Code" name="bcode">
+            Business Name:<input type="text" placeholder="Business Name" name="bname">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <br>
+
+    <legend>
+        <h3>Updation</h3>
+        <form action="updateInBussiness" method="post">
+            Business Code:<input type="text" placeholder="Business Code" name="ubcode">
+            New Business Name:<input type="text" placeholder="New Business Name" name="ubname">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <br>
+
+    <legend>
+        <h3>Deletion</h3>
+        <form action="deleteFromBussiness" method="get">
+            Business Code:<input type="text" placeholder="Business Code" name="dbcode">
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+
+
+
+</body>
+
+</html>
