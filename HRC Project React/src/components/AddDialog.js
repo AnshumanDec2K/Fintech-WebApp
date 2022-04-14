@@ -30,7 +30,7 @@ const AddDialog = ({ open, setOpen }) => {
 
 
   const handleClickOpen = async () => {
-    //JSON Creation
+    
     const body = JSON.stringify({
       bcode: businessCode,
       cn: customerNumber,
@@ -96,28 +96,6 @@ const AddDialog = ({ open, setOpen }) => {
   };
 
 
-
-  //   const validate = () => {
-  //     let temp = {}
-  //     temp.cust_number = values.cust_number ? "" : "This field is Required."
-  //     temp.business_code = values.business_code ? "" : "This field is Required."
-  //     temp.doc_id = values.doc_id ? "" : "This field is Required."
-  //     temp.inv_cur = values.inv_cur ? "" : "This field is Required."
-  //     temp.doc_type = values.doc_type ? "" : "This field is Required."
-  //     temp.cpt = values.cpt ? "" : "This field is Required."
-  //     temp.bus_year = values.bus_year ? "" : "This field is Required."
-  //     temp.pid = values.pid ? "" : "This field is Required."
-  //     temp.inv_id = values.inv_id ? "" : "This field is Required."
-  //     temp.total_open_amount = values.total_open_amount ? "" : "This field is Required."
-
-  //     setErrors({
-  //         ...temp
-  //     })
-
-  //     return Object.values(temp).every(x => x == "")
-  // }
-
-
   return (
     <>
       <Dialog
@@ -162,18 +140,10 @@ const AddDialog = ({ open, setOpen }) => {
                 />
               </Grid>
               <Grid item xs={3}>
-                {/* <TextField
-                  id="clear-date"
-                  label="Clear Date"
-                  variant="filled"
-                  type="date"
-                  onChange={(event) => { setClearDate(event.target.value); }}
-                  style={{ width: 300, background: "#FFFFFF" }}
-                /> */}
                 <LocalizationProvider dateAdapter={AdapterMoment}>
                   <DatePicker
                     label="Clear Date"
-                    value={clearDate}
+                    value={clearDate || null}
                     inputFormat='DD/MM/YYYY'
                     onChange={(newValue) => {
                       setClearDate(newValue);
@@ -201,18 +171,10 @@ const AddDialog = ({ open, setOpen }) => {
                 />
               </Grid>
               <Grid item xs={3}>
-                {/* <TextField
-                  id="posting-date"
-                  label="Posting Date"
-                  variant="filled"
-                  type="date"
-                  onChange={(event) => { setPostingDate(event.target.value); }}
-                  style={{ width: 300, background: "#FFFFFF" }}
-                /> */}
                 <LocalizationProvider dateAdapter={AdapterMoment}>
                   <DatePicker
                     label="Posting Date"
-                    value={postingDate}
+                    value={postingDate || null}
                     inputFormat='DD/MM/YYYY'
                     onChange={(newValue) => {
                       setPostingDate(newValue);
@@ -222,18 +184,10 @@ const AddDialog = ({ open, setOpen }) => {
                 </LocalizationProvider>
               </Grid>
               <Grid item xs={3}>
-                {/* <TextField
-                  id="document-create-date"
-                  label="Document Create Date"
-                  variant="filled"
-                  type="date"
-                  onChange={(event) => { setDocumentCreateDate(event.target.value); }}
-                  style={{ width: 300, background: "#FFFFFF" }}
-                /> */}
                 <LocalizationProvider dateAdapter={AdapterMoment}>
                   <DatePicker
                     label="Document Create Date"
-                    value={documentCreateDate}
+                    value={documentCreateDate || null}
                     inputFormat='DD/MM/YYYY'
                     onChange={(newValue) => {
                       setDocumentCreateDate(newValue);
@@ -243,18 +197,10 @@ const AddDialog = ({ open, setOpen }) => {
                 </LocalizationProvider>
               </Grid>
               <Grid item xs={3}>
-                {/* <TextField
-                  id="due-date"
-                  label="Due Date"
-                  variant="filled"
-                  type="date"
-                  onChange={(event) => { setDueDate(event.target.value); }}
-                  style={{ width: 300, background: "#FFFFFF" }}
-                /> */}
-                <LocalizationProvider dateAdapter={AdapterMoment}>
+                 <LocalizationProvider dateAdapter={AdapterMoment}>
                   <DatePicker
                     label="Due Date"
-                    value={dueDate}
+                    value={dueDate || null}
                     inputFormat='DD/MM/YYYY'
                     onChange={(newValue) => {
                       setDueDate(newValue);
@@ -300,19 +246,11 @@ const AddDialog = ({ open, setOpen }) => {
                 />
               </Grid>
               <Grid item xs={3}>
-                {/* <TextField
-                  id="baseline-create-date"
-                  label="Baseline Create Date"
-                  variant="filled"
-                  type="date"
-                  onChange={(event) => { setBaselineCreateDate(event.target.value); }}
-                  style={{ width: 300, background: "#FFFFFF" }}
-                /> */}
                 <LocalizationProvider dateAdapter={AdapterMoment}>
                   <DatePicker
                     label="Baseline Create Date"
+                    value={baselineCreateDate|| null}
                     inputFormat='DD/MM/YYYY'
-                    value={baselineCreateDate}
                     onChange={(newValue) => {
                       setBaselineCreateDate(newValue);
                     }}

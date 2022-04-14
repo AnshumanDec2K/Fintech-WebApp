@@ -11,7 +11,7 @@ import EditDialog from './EditDialog';
 import DeleteDialog from './DeleteDialog';
 import { BasicSearch, Data } from '../Services/Crud';
 
-export default function Buttons({ length, selectedRowDetails, setData, setSelected }) {
+export default function Buttons({ length, selectedRowDetails, setData, setSelected ,setIsLoading}) {
     const [editDialogOpen, setEditDialogOpen] = React.useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
     const [addDialogOpen, setAddDialogOpen] = React.useState(false);
@@ -24,12 +24,15 @@ export default function Buttons({ length, selectedRowDetails, setData, setSelect
     const showDeleteOption = length >= 1;
 
 
-    //Reload Button
+    
     const func = async () => {
+        setIsLoading(true);
+        setData([]);
         const res = await Data()
         const data = res.data;
         setData(data);
         setSelected([]);
+        setIsLoading(false)
     };
 
 

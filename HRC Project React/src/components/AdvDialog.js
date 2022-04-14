@@ -41,37 +41,6 @@ const AdvDialog = ({ open, setOpen, setData }) => {
 
 
 
-  //   const validate = () => {
-  //     let temp = {}
-  //     temp.cust_number = values.cust_number ? "" : "This field is Required."
-  //     temp.business_code = values.business_code ? "" : "This field is Required."
-  //     temp.doc_id = values.doc_id ? "" : "This field is Required."
-  //     temp.inv_cur = values.inv_cur ? "" : "This field is Required."
-  //     temp.doc_type = values.doc_type ? "" : "This field is Required."
-  //     temp.cpt = values.cpt ? "" : "This field is Required."
-  //     temp.bus_year = values.bus_year ? "" : "This field is Required."
-  //     temp.pid = values.pid ? "" : "This field is Required."
-  //     temp.inv_id = values.inv_id ? "" : "This field is Required."
-  //     temp.total_open_amount = values.total_open_amount ? "" : "This field is Required."
-
-  //     setErrors({
-  //         ...temp
-  //     })
-
-  //     return Object.values(temp).every(x => x == "")
-  // }
-
-
-  //JSON Creation
-  const advReq = JSON.stringify({
-
-    documentID: documentID,
-    invoiceID: invoiceID,
-    customerNumber: customerNumber,
-    businessYear: businessYear,
-
-  });
-
   return (
     <>
       <Dialog

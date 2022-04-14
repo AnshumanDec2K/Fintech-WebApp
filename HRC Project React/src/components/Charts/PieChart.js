@@ -10,9 +10,8 @@ function PieChart({ currency }) {
             label: 'My First Dataset',
             data: invoiceCounts,
             backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                '#FFB0C1',
+                '#99D0F5',
             ],
             hoverOffset: 4
         }]

@@ -20,7 +20,7 @@ function BarChart({totalOpenAmt}) {
             label: 'Total Open Amount',
             data: totalOpenAmounts,
             backgroundColor: [
-                '#99D0F5'
+                '#99D0F5',
             ],
             hoverOffset: 4
         }]

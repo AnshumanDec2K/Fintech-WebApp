@@ -12,6 +12,7 @@ export const Data = async () => {
   return res;
 }
 
+
 export const Analytics = async (clearFrom, clearTo, dueFrom, dueTo, baselineFrom, baselineTo, invoiceCurrency) => {
   
   const url = `http://localhost:8080/demo/analytics?clearFrom=${clearFrom?clearFrom?.format("YYYY-MM-DD"):""}&clearTo=${clearTo?clearTo?.format("YYYY-MM-DD"):""}&dueFrom=${dueFrom?dueFrom?.format("YYYY-MM-DD"):""}&dueTo=${dueTo?dueTo?.format("YYYY-MM-DD"):""}&baselineFrom=${baselineFrom?baselineFrom?.format("YYYY-MM-DD"):""}&baselineTo=${baselineTo?baselineTo?.format("YYYY-MM-DD"):""}&invoiceCurrency=${invoiceCurrency}`
@@ -39,6 +40,7 @@ export const AdvSearch = async (documentID, invoiceID, customerNumber, businessY
   return res;
 }
 
+
 export const BasicSearch = async (customerNumber) => {
   const url = `http://localhost:8080/demo/getDataByCustID?cn=${customerNumber}`
   let res;
@@ -63,6 +65,7 @@ export const Add = async (body) => {
 
 }
 
+
 export const Edit = async (ic, cpt, sl) => {
   let res;
   await axios.put(`http://localhost:8080/demo/updateInWinter?ic=${ic}&cpt=${cpt}&sn=${sl}`).then((response) => {
@@ -73,6 +76,7 @@ export const Edit = async (ic, cpt, sl) => {
 
   return res;
 }
+
 
 export const Delete = async (sl) => {
   let res;

@@ -5,8 +5,8 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function Alerts({openal,setOpenal, message}) {
-    
+export default function Alerts({ openal, setOpenal, message }) {
+
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -24,20 +24,12 @@ export default function Alerts({openal,setOpenal, message}) {
                             <CloseIcon fontSize="inherit" />
                         </IconButton>
                     }
-                    sx={{ width:'89%', margin:'auto' }}
+                    sx={{ width: '89%', margin: 'auto' }}
                 >
                     {message}
                 </Alert>
             </Collapse>
-            {/* <Button
-                disabled={open}
-                variant="outlined"
-                onClick={() => {
-                    setOpen(true);
-                }}
-            >
-                Re-open
-            </Button> */}
+
         </Box>
     );
 }

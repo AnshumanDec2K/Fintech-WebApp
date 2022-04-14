@@ -14,14 +14,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import { visuallyHidden } from '@mui/utils';
 import { Data } from '../Services/Crud';
 import { useEffect, useState } from 'react';
 import Buttons from './Buttons';
 import LinearIndeterminate from './Progress';
-// import { LinearProgressWithLabel,LinearWithValueLabel } from './Progress';
 
 
 
@@ -41,8 +38,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// This method is created for cross-browser compatibility, if you don't
-// need to support IE11, you can use Array.prototype.sort() directly
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
@@ -247,23 +242,10 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          {/* <b>Invoice List</b> */}
+
         </Typography>
       )}
 
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            {/* <DeleteIcon /> */}
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            {/* <FilterListIcon /> */}
-          </IconButton>
-        </Tooltip>
-      )}
     </Toolbar>
   );
 };
@@ -355,14 +337,14 @@ export default function EnhancedTable() {
 
   const isSelected = (sl_no) => selected.indexOf(sl_no) !== -1;
 
-  // Avoid a layout jump when reaching the last page with empty rows.
+
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
   return (
 
     <Box sx={{ width: '100%' }}>
-      <Buttons length={selected.length} selectedRowDetails={selectedRowDetails} setData={setData} setSelected={setSelected} />
+      <Buttons length={selected.length} selectedRowDetails={selectedRowDetails} setData={setData} setSelected={setSelected} setIsLoading={setIsLoading} />
       <Paper sx={{ width: '100%', mb: 2, backgroundColor: '#283d4a' }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
@@ -381,8 +363,7 @@ export default function EnhancedTable() {
             />
 
             <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
+
               {stableSort(data, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
@@ -455,10 +436,6 @@ export default function EnhancedTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      {/* <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      /> */}
     </Box>
   );
 }

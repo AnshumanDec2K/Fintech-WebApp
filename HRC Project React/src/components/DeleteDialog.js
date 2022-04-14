@@ -63,7 +63,6 @@ export default function DeleteDialog({ open, setOpen, selectedRowDetails }) {
                     <Button
                         variant="contained"
                         onClick={handleClickOpen}
-                        // disabled={isUpdating || !updateButtonActive}
                         sx={{
                             margin: "auto",
                             height: "50px",

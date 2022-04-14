@@ -15,7 +15,7 @@ const EditDialog = ({ open, setOpen, selectedRowDetails }) => {
   const [custPaymentTerms, setCustPaymentTerms] = React.useState("");
   const [openal, setOpenal] = React.useState(false);
 
-  //Axios call here!!
+
   const handleUpdate = async () => {
     const res = await Edit(invoiceCurrency, custPaymentTerms, selectedRowDetails[0]);
     if (res.status === 200) {
@@ -90,7 +90,7 @@ const EditDialog = ({ open, setOpen, selectedRowDetails }) => {
 
         </DialogContent>
 
-        <div style={{backgroundColor: '#283d4a'}}>
+        <div style={{ backgroundColor: '#283d4a' }}>
           <Alerts openal={openal} setOpenal={setOpenal} message={"Update Successful!!"} />
         </div>
 
@@ -98,7 +98,7 @@ const EditDialog = ({ open, setOpen, selectedRowDetails }) => {
           <Button
             variant="contained"
             onClick={handleUpdate}
-            // disabled={isUpdating || !updateButtonActive}
+
             sx={{
               margin: "auto",
               height: "50px",

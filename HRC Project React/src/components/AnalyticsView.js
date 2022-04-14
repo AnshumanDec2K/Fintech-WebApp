@@ -1,17 +1,11 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
-// import Button from '@mui/material/Button';
-// import ListItemText from '@mui/material/ListItemText';
-// import ListItem from '@mui/material/ListItem';
-// import List from '@mui/material/List';
-// import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import { DialogContent } from '@mui/material';
-
 import Chart from "chart.js/auto";
 import { display } from '@mui/system';
 import BarChart from './Charts/BarChart';
@@ -52,13 +46,19 @@ export default function FullScreenDialog({ open, setOpen, currency, totalOpenAmt
                 </AppBar>
                 <DialogContent sx={{ backgroundColor: '#FFF', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
 
-                    <div style={{ width: '80vw' }}>
+                    <div style={{ width: '80vw', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+                        <h2>
+                            Business Insights Bar chart
+                        </h2>
                         <BarChart totalOpenAmt={totalOpenAmt} />
                     </div>
 
                     {(currency && currency.length > 0) &&
 
-                        <div style={{ marginTop: '3vh', width: '45vw' }}>
+                        <div style={{ marginTop: '10vh', width: '40vw', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+                            <h2>
+                                Currency Insights Pie chart
+                            </h2>
                             <PieChart currency={currency} />
                         </div>}
 
